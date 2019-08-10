@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"io"
 	"os"
-	"path"
-	"runtime"
 	"strings"
 	"unicode"
 )
@@ -16,11 +14,10 @@ type Tokenizer struct {
 	stopWords map[string]bool
 }
 
-func NewTokenizer(stopwordsPath string) *Tokenizer {
+func NewTokenizer(dictPath string, swPath string) *Tokenizer {
 	tk := &Tokenizer{}
-	var _, filename, _, _ = runtime.Caller(0)
-	tk.dict = NewDict(path.Dir(filename) + "data/dictionary.txt")
-	tk.loadStopwords(stopwordsPath)
+	tk.dict = NewDict(dictPath)
+	tk.loadStopwords(swPath)
 	return tk
 }
 
