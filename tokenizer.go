@@ -24,7 +24,7 @@ func NewTokenizer(stopwordsPath string) *Tokenizer {
 	return tk
 }
 
-func (tk *Tokenizer) tokenize(text string) []string {
+func (tk *Tokenizer) Tokenize(text string) []string {
 	var result []string
 	startLen := tk.dict.maxLen
 	text = strings.Trim(text, " ")
