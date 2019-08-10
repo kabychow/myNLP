@@ -3,6 +3,7 @@ package mytokenizer
 import (
 	"bufio"
 	"io"
+	"log"
 	"os"
 	"strings"
 )
@@ -20,7 +21,10 @@ type Dict struct {
 
 func NewDict(dictPath string) *Dict {
 	dict := &Dict{Records: make(map[string]DictRecord)}
-	fi, _ := os.Open(dictPath)
+	fi, err := os.Open(dictPath)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	defer fi.Close()
 

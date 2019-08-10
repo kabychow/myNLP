@@ -3,6 +3,7 @@ package mytokenizer
 import (
 	"bufio"
 	"io"
+	"log"
 	"os"
 	"strings"
 	"unicode"
@@ -40,6 +41,7 @@ func (tk *Tokenizer) Tokenize(text string) []string {
 			}
 			word = string([]rune(word)[0 : len([]rune(word))-1])
 		}
+		word = strings.ToLower(word)
 		if _, found := tk.stopWords[word]; !found {
 			result = append(result, word)
 		}
@@ -59,7 +61,10 @@ func filter(text string) bool {
 
 func (tk *Tokenizer) loadStopwords(path string) {
 	tk.stopWords = map[string]bool{}
-	fi, _ := os.Open(path)
+	fi, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer fi.Close()
 	br := bufio.NewReader(fi)
 	for a, _, c := br.ReadLine(); c != io.EOF; a, _, c = br.ReadLine() {
