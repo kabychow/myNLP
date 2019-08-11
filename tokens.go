@@ -1,4 +1,4 @@
-package model
+package mynlp
 
 import "strings"
 

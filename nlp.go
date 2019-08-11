@@ -1,9 +1,8 @@
-package MalaysianGoTokenizer
+package mynlp
 
 import (
 	"bufio"
 	"github.com/RadhiFadlillah/go-sastrawi"
-	"github.com/khaibin/MalaysianGoTokenizer/model"
 	"github.com/reiver/go-porterstemmer"
 	"io"
 	"log"
@@ -22,8 +21,8 @@ var maxLen int
 
 type Nlp struct {
 	Raw     string
-	Tk      model.Tokens
-	TkStops model.Tokens
+	Tk      Tokens
+	TkStops Tokens
 }
 
 func NLP(text string) *Nlp {
@@ -56,9 +55,6 @@ func NLP(text string) *Nlp {
 	}
 	return result
 }
-
-
-
 
 func getStopwords() map[string]bool {
 	tmp := map[string]bool{}
