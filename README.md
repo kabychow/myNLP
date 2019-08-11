@@ -1,3 +1,3 @@
 ```
-go get -u github.com/khaibin/MalaysianGoTokenizer
+go get -u github.com/khaibin/myNLP
 ```
